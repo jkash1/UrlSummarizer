@@ -1,0 +1,165 @@
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="two-columns">
+      <div class="column">
+      <h1>You are a Dependent!</h1>
+      <h2>Paste a URL</h2>
+        <p><h3>Recommended URL's:</h3> 
+          <li>https://www.healthcare.gov/glossary/dependent/</li>
+          <li>URL placeholder 2</li></p>
+       
+       <!-- <div class="text">
+          "Skim down this document to "
+          <input type="text" class="form-control len-field" maxlength="2" size="2" name="len" value="50">
+          "% of original size."
+          </div>--> 
+    <form action = "{{ url_for('mySumD') }}" method = "POST" id="urlForm" class="standard">
+
+     <input type="url" id = "url" name="url_link" class= "form-control" placeholder="Insert URL here...">
+            <div id="url_field_is_empty" class="error" style="display: none"> You must submit a valid URL</div>
+      <h1>Choose Your Summarization Method</h1>
+      <div class="btn-group" style="width:100%" id="subscribersoptions">
+         <button style="width:20%" type ="submit" name="action" value="LSA">LSA</button>
+         <button style="width:20%" type ="submit" name="action" value="Luhn">Luhn</button>
+         <button style="width:20%" type ="submit" name="action" value="LexRank">Lex Rank</button>
+         <button style="width:20%" type ="submit" name="action" value="TextRank">Text Rank</button>
+         <button style="width:20%" type ="submit" name="action" value="SumBasic">SumBasic</button>
+         <button style="width:20%" type ="submit" name="action" value="KL-Sum">KL-Sum</button>
+      </div>    
+      <br>
+      {{para}}
+
+    </form>
+   
+   
+     <script>
+      document.getElementById("Luhn").onclick = function() {
+        document.getElementById("output").innerHTML = "Luhn"
+     }
+        document.getElementById('Edmundson').onclick = function() {
+          document.getElementById("output").innerHTML = "Edmundson was clicked"
+     }
+        document.getElementById('LSA').onclick = function() {
+          document.getElementById("output").innerHTML = "LSA was clicked"
+     }
+        document.getElementById('LexRank').onclick = function() {
+          document.getElementById("output").innerHTML = "LexRank was clicked"
+     }
+        document.getElementById('TextRank').onclick = function() {
+          document.getElementById("output").innerHTML = "TextRank was clicked"
+     }
+        document.getElementById('SumBasic').onclick = function() {
+          document.getElementById("output").innerHTML = "SumBasic was clicked"
+     }
+        document.getElementById('KL-Sum').onclick = function() {
+          document.getElementById("output").innerHTML = "KL-Sum was clicked"
+    };     
+
+      </script>      
+
+
+      <script>
+        $(document).ready(function(){
+          $('#LSA').click(function(){
+              var myurl = $('#url').val();
+            
+              $.ajax({
+                  type: 'POST',
+                  url: '/sum',
+                  data: myurl,
+                  success:function(data){
+                   $('#url').val('');
+                    $('#output').innerhtml("my output" + url)
+                  }
+
+              });
+            });
+
+            });
+           </script>
+        
+        
+
+     <!--     <div class="buttons">
+          <input type="submit" class="btn btn-lg btn-success submit-button" value="Summarize!">
+          </div>
+             </form>
+        </div>-->
+      <!--
+ <script>
+     $(document).ready(function(){
+        $('#urlForm input').bind('input', function(){
+          $('#urlForm .buttons').show()
+        });
+        $('#urlForm').submit(onSubmitUrlForm);
+        $('#reloadButton').on('click', function(){
+          $(this).addClass('reloading');
+          resetCache("", 30);
+        });
+      });
+    </script>-->
+        
+
+  <!--      
+ <div class="column-divider"></div>
+   <div class="column">
+        <h2>Upload a PDF</h2>
+            <form action="https://skimcast-public-production.s3.amazonaws.com/" id="fileForm" class="standard" method="post" enctype="multipart/form-data">-->
+
+            <!--<div class="text">Skim down this PDF to <span class="len-field"><input type="text" class="form-control len-field" maxlength="2" size="2" name="len" value="30"></span>% of original size.</div>-->
+     <!-- <div class="text">Skim only pages <span class="pbegin-field"><input type="text" class="form-control pbegin-field" size="2" id="pbegin" value=""></span> to <span class="pend-field"><input type="text" class="form-control pend-field" size="2" id="pend" value=""></span></div>
+      <div>
+        <input type="file" name="file" id="fileField">
+        <label for="fileField" id="fileLabel"><span class="btn btn-lg btn-success">Choose File</span></label>
+      </div>
+      <div class="buttons" style="display: none">
+        <input type="submit" class="btn btn-lg btn-success submit-button" value="Upload &amp; Skim!">
+        <input type="submit" class="btn btn-lg btn-success submitting-button" value="Uploading..." disabled="true/">
+      </div>
+    </form>
+     
+     
+     
+  <script>
+    $(document).ready(function(){
+      var form = $('#fileForm'),
+        input = $('#fileField'),
+        buttons = $('#fileForm .buttons'),
+        label	 = input.next('label'),
+        labelVal = label.html();
+      input.on( 'focus', function(){ input.addClass( 'has-focus' ); })
+      input.on( 'blur', function(){ input.removeClass( 'has-focus' ); });
+
+      $('#fileForm input').bind('input', function(){
+        buttons.show()
+      });
+
+      input.on('change', function(e) {
+        var fileName = '';
+        var fileButton = label.find('span');
+        if (e.target.value) fileName = e.target.value.split('\\').pop();
+        if (fileName) {
+          form.addClass('has-file');
+          buttons.show()
+          fileButton.html(fileName);
+          fileButton.removeClass('btn-success').addClass('btn-default');
+        } else {
+          form.removeClass('has-file');
+          label.html(labelVal);
+          fileButton.addClass('btn-success').removeClass('btn-default');
+        }
+      });
+      $('#fileForm').submit(function(event) {
+        onSubmitFileForm(event, "", "", "")
+      });
+    });
+  </script>
+      </div>     -->
+            
+<p id = "output"></p>
+        
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type = "text/javascript" src="{{url_for('static', filename = 'styles/vendor/jquery/jquery.min.js')}}"></script>
+    <script type = "text/javascript" src="{{url_for('static', filename = 'styles/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

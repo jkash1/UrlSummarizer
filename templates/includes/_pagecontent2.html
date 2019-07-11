@@ -1,0 +1,80 @@
+<!-- Page Content -->
+    <div class="container">
+      <div class="two-columns">
+      <div class="column">
+      <h1> You are a Subscriber!</h1>
+      <h2>Paste a URL</h2>
+        <p><h3>Recommended URL's:</h3> 
+          <li>https://www.healthcare.gov/glossary/dependent/</li>
+          <li>URL placeholder 2</li></p>
+       
+
+    <form action = "{{ url_for('mySumS') }}" method = "POST" id="urlForm" class="standard">
+
+     <input type="url" id = "url" name="url_link" class= "form-control" placeholder="Insert URL here...">
+            <div id="url_field_is_empty" class="error" style="display: none"> You must submit a valid URL</div>
+      <h1>Choose Your Summarization Method</h1>
+      <div class="btn-group" style="width:100%" id="subscribersoptions">
+         <button style="width:20%" type ="submit" name="action" value="LSA">LSA</button>
+         <button style="width:20%" type ="submit" name="action" value="Luhn">Luhn</button>
+         <button style="width:20%" type ="submit" name="action" value="LexRank">Lex Rank</button>
+         <button style="width:20%" type ="submit" name="action" value="TextRank">Text Rank</button>
+         <button style="width:20%" type ="submit" name="action" value="SumBasic">SumBasic</button>
+         <button style="width:20%" type ="submit" name="action" value="KL-Sum">KL-Sum</button>
+      </div>    
+      <br>
+      {{para}}
+
+    </form>
+   
+   
+     <script>
+      document.getElementById("Luhn").onclick = function() {
+        document.getElementById("output").innerHTML = "Luhn"
+     }
+        document.getElementById('Edmundson').onclick = function() {
+          document.getElementById("output").innerHTML = "Edmundson was clicked"
+     }
+        document.getElementById('LSA').onclick = function() {
+          document.getElementById("output").innerHTML = "LSA was clicked"
+     }
+        document.getElementById('LexRank').onclick = function() {
+          document.getElementById("output").innerHTML = "LexRank was clicked"
+     }
+        document.getElementById('TextRank').onclick = function() {
+          document.getElementById("output").innerHTML = "TextRank was clicked"
+     }
+        document.getElementById('SumBasic').onclick = function() {
+          document.getElementById("output").innerHTML = "SumBasic was clicked"
+     }
+        document.getElementById('KL-Sum').onclick = function() {
+          document.getElementById("output").innerHTML = "KL-Sum was clicked"
+    };     
+
+      </script>      
+
+      <script>
+        $(document).ready(function(){
+          $('#LSA').click(function(){
+              var myurl = $('#url').val();
+            
+              $.ajax({
+                  type: 'POST',
+                  url: '/sum',
+                  data: myurl,
+                  success:function(data){
+                   $('#url').val('');
+                    $('#output').innerhtml("my output" + url)
+                  }
+
+              });
+            });
+
+            });
+           </script>
+        <p id = "output"></p>
+        
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type = "text/javascript" src="{{url_for('static', filename = 'styles/vendor/jquery/jquery.min.js')}}"></script>
+    <script type = "text/javascript" src="{{url_for('static', filename = 'styles/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

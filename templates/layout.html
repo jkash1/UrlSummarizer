@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	  <head>
+	  	<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   	 	<meta name="description" content="">
+    	<meta name="author" content="">
+
+	  	<title> MySummarizationApp</title>
+		
+
+    	<!-- Custom styles for this template -->
+ 		
+
+	    	 <!-- Bootstrap core CSS -->
+	    <link href="{{url_for('static', filename = 'styles/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+	    <!-- Custom fonts for this template -->
+	    <link href="{{url_for('static', filename = 'styles/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+		<link href="{{url_for('static', filename = 'styles/vendor/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet" type="text/css">
+		<link href="{{url_for('static', filename = 'https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic')}}" rel="stylesheet" type="text/css">
+	    
+	    <!-- Custom styles for this template -->
+	    <link href="{{url_for('static', filename = 'styles/css/landing-page.min.css')}}" rel="stylesheet">
+	 
+        <script type = "text/JavaScript">
+        
+            function ageFinder(){
+            
+                var nAge = document.getElementById("ageInp").value;
+                if(nAge <= 25){
+                  window.open("/dependent");
+                }else{
+                  window.open("/subscriber")         ;
+                }
+            }
+        </script>
+	  	
+	  </head>
+
+	    <body>
+
+	  	{%include 'includes/_navbar.html' %}
+	  	{%include 'includes/_masthead.html' %}
+	  	{%include 'includes/_gridicons.html' %}
+	  	{%include 'includes/_images.html' %}
+	  	{%include 'includes/_action.html' %}
+	  	{%include 'includes/_footer.html' %}
+	  	{% block body %}{% endblock %}
+ 		
+		      
+		    <!-- Bootstrap core JavaScript -->
+		    <script type = "text/javascript" src="{{url_for('static', filename = 'styles/vendor/jquery/jquery.min.js')}}"></script>
+		    <script type = "text/javascript" src="{{url_for('static', filename = 'styles/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+			<script type = "text/javascript" src="{{url_for('static', filename = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')}}"></script>
+		</body>
+</html>
